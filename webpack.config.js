@@ -1,42 +1,39 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/script.js',
+  entry: "./src/script.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
-      },
-    ],
+        test: /\.(png|jpe?g|gif|svg)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name][ext]"
+        }
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html"
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/assets', to: 'assets' }, // Копируем папку с изображениями
-      ],
-    }),
+    new MiniCssExtractPlugin({
+      filename: "styles.css"
+    })
   ],
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'), // Папка для сервера разработки
-    },
-    port: 8080,
-    hot: true,
-  },
-  mode: 'development',
+    static: "./dist",
+    hot: true
+  }
 };
