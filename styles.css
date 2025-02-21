@@ -1260,14 +1260,10 @@ body {
 /* XS -> 0 - 699px (Контейнер отзывчивый, min 300px) */
 @media (max-width: 699px) {
 
-    body {
-        overflow-x: hidden;
-    }
-
     .main, .header, .experience, .information, .mission, .advantages, .info {
         max-width: 100%;
         min-width: 300px;
-        padding: 0 15px; /* Немного отступов по бокам */
+        padding: 0 10px; /* Немного отступов по бокам */
     }
 
     .advantages__block__grid {
