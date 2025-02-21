@@ -41,8 +41,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
 body {
     background-color: #FFFF;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .main {
@@ -1255,7 +1259,12 @@ body {
 
 /* XS -> 0 - 699px (Контейнер отзывчивый, min 300px) */
 @media (max-width: 699px) {
-    .main, .header, .information, .mission, .advantages, .info {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .main, .header, .experience, .information, .mission, .advantages, .info {
         max-width: 100%;
         min-width: 300px;
         padding: 0 15px; /* Немного отступов по бокам */
@@ -1284,7 +1293,7 @@ body {
     }
  
     .header__text {
-        max-width: 223px;
+        max-width: 90%;
         margin-left: auto;
         margin-right: auto;
         margin-top: 55px;
@@ -1340,6 +1349,7 @@ body {
     }
     
     .experience__text {
+        width: 0;
         max-width: 100%;
         min-width: 300px;
     }
